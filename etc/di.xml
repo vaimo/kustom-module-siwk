@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Klarna Bank AB (publ)
+ *
+ * For the full copyright and license information, please view the NOTICE
+ * and LICENSE files that were distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Klarna\Siwk\Model\Authentication\Storage\Token\Update">
+        <arguments>
+            <argument name="tokenRepository" xsi:type="object">Klarna\Siwk\Model\Database\Token\Repository</argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Siwk\Model\Authentication\Storage\Customer\Update">
+        <arguments>
+            <argument name="customerRepository" xsi:type="object">Klarna\Siwk\Model\Database\Customer\Repository</argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Siwk\Model\Authentication\Storage\Token\Fetch">
+        <arguments>
+            <argument name="repository" xsi:type="object">Klarna\Siwk\Model\Database\Token\Repository</argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Siwk\Model\Authentication\Storage\Customer\Fetch">
+        <arguments>
+            <argument name="repository" xsi:type="object">Klarna\Siwk\Model\Database\Customer\Repository</argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Siwk\Model\Authentication\Token\Validation\SigningKeyValidator">
+        <arguments>
+            <argument name="apiJwks" xsi:type="object">Klarna\Siwk\Model\Authentication\Api\Endpoints\Jwks</argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Siwk\Model\Authentication\Token\Validation\ClaimValidator">
+        <arguments>
+            <argument name="apiOpenIdConfiguration" xsi:type="object">Klarna\Siwk\Model\Authentication\Api\Endpoints\OpenIdConfiguration</argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Siwk\Model\Authentication\Service">
+        <arguments>
+            <argument name="tokenRegeneration" xsi:type="object">Klarna\Siwk\Model\Authentication\Api\Endpoints\TokenRegeneration</argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Siwk\Model\Service">
+        <arguments>
+            <argument name="repository" xsi:type="object">Klarna\Siwk\Model\Database\Token\Repository</argument>
+        </arguments>
+    </type>
+</config>

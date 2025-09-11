@@ -1,0 +1,40 @@
+{
+    "klarna_siwk_token": {
+        "column": {
+            "siwk_token_id": true,
+            "customer_id": true,
+            "access_token": true,
+            "access_token_expires_in": true,
+            "usable_for_purchase": true,
+            "expires_in": true,
+            "refresh_token": true,
+            "refresh_token_expires_in": true,
+            "id_token": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "KLARNA_SIWK_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "KLARNA_SIWK_CUSTOMER_ID_UNIQUE": true,
+            "CUSTOMER_ID_KLARNA_SIWK_CUSTOMER_ID_CUSTOMER_ENTITY_ID": true
+        }
+    },
+    "klarna_siwk_customer": {
+        "column": {
+            "siwk_customer_id": true,
+            "shop_customer_id": true,
+            "klarna_customer_id": true
+        },
+        "index": {
+            "KLARNA_SIWK_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "KLARNA_SIWK_CUSTOMER_KLARNA_ID_UNIQUE": true,
+            "CUSTOMER_ID_KLARNA_SIWK_CUSTOMER_ID_CUSTOMER_ENTITY_ID": true
+        }
+    }
+}

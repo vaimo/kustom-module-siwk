@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Klarna Bank AB (publ)
+ *
+ * For the full copyright and license information, please view the NOTICE
+ * and LICENSE files that were distributed with this source code.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="klarna_siwk_token" resource="default" engine="innodb" comment="Klarna SIWK Token">
+        <column name="siwk_token_id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="SIWK token ID"/>
+        <column name="customer_id" xsi:type="int" padding="10" unsigned="true" nullable="false" comment="Customer Id"/>
+        <column name="access_token" xsi:type="text" nullable="true" comment="Klarna access token"/>
+        <column name="access_token_expires_in" xsi:type="int" padding="10" unsigned="true" nullable="true" comment="Number of seconds until the access token expires"/>
+        <column name="usable_for_purchase" xsi:type="smallint" padding="6" unsigned="false" nullable="false" default="1" comment="Indicating if the access token can be used for a purchase"/>
+        <column name="refresh_token" xsi:type="text" nullable="false" comment="Klarna refresh token"/>
+        <column name="refresh_token_expires_in" xsi:type="int" padding="10" nullable="false" comment="Number of seconds until the refresh token expires"/>
+        <column name="id_token" xsi:type="text" nullable="false" comment="Klarna ID token"/>
+        <column name="created_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column name="updated_at" xsi:type="timestamp" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="siwk_token_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_ID_KLARNA_SIWK_CUSTOMER_ID_CUSTOMER_ENTITY_ID"
+                    table="klarna_siwk_token"
+                    column="customer_id"
+                    referenceTable="customer_entity"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"
+        />
+        <constraint xsi:type="unique" referenceId="KLARNA_SIWK_CUSTOMER_ID_UNIQUE">
+            <column name="customer_id"/>
+        </constraint>
+    </table>
+    <table name="klarna_siwk_customer" resource="default" engine="innodb" comment="Klarna SIWK Customer">
+        <column name="siwk_customer_id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="SIWK customer ID"/>
+        <column name="shop_customer_id" xsi:type="int" padding="10" unsigned="true" nullable="false" comment="Customer Id"/>
+        <column name="klarna_customer_id" xsi:type="varchar" length="255" nullable="false" comment="Customer Id"/>
+        <column name="created_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column name="updated_at" xsi:type="timestamp" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="siwk_customer_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_ID_KLARNA_SIWK_CUSTOMER_ID_CUSTOMER_ENTITY_ID"
+                    table="klarna_siwk_customer"
+                    column="shop_customer_id"
+                    referenceTable="customer_entity"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"
+        />
+        <constraint xsi:type="unique" referenceId="KLARNA_SIWK_CUSTOMER_KLARNA_ID_UNIQUE">
+            <column name="klarna_customer_id"/>
+            <column name="shop_customer_id"/>
+        </constraint>
+    </table>
+</schema>

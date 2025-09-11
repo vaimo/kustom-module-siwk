@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Klarna_Siwk::css/styles-m.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Klarna\Siwk\Block\Login"
+                   name="klarna.siwk.login_page_login"
+                   template="Klarna_Siwk::login.phtml"
+                   after="-"
+            >
+                <arguments>
+                    <argument name="position" xsi:type="string">sign-in-page</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
