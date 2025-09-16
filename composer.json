@@ -6,7 +6,7 @@
     "version": "1.0.13",
     "require": {
         "firebase/php-jwt": "^6.9.0",
-        "klarna/module-base": "11.0.12",
+        "vaimo/kustom-module-base": "11.0.12",
         "magento/framework": "^103",
         "php": "~7.4.0||~8.1.0||~8.2.0||~8.3.0||~8.4.0"
     },
